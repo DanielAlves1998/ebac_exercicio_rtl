@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/prefer-screen-queries */
 import { fireEvent, render, screen } from '@testing-library/react';
 import PostComment from '.';
 
@@ -13,7 +14,7 @@ describe('Teste para o componente PostComment', () => {
 
         fireEvent.change(screen.getByTestId('comment-textarea'), {
             target: {
-                value: 'Comentário adicionado via testes',
+                value: 'Comentários adicionado via testes',
             }
         });
         fireEvent.click(screen.getByTestId('comment-button'));
