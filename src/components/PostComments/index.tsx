@@ -16,7 +16,7 @@ const Post = () => {
 
     return (
         <div>
-            <ul data-testid="comment-textareas" className={styles['post-comment']}>
+            <ul data-testid="comment-textarea" className={styles['post-comment']}>
                 {comments.map(({ comment, id }) => (
                     <li className={styles['post-comment']} key={id}>
                         <p className={styles['post-comment-content']}>
