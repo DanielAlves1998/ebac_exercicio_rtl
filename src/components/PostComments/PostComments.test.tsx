@@ -12,7 +12,7 @@ describe('Teste para o componente PostComment', () => {
         render(<PostComment/>);
 
 
-        fireEvent.change(screen.getByTestId('comment-textareas'), {
+        fireEvent.change(screen.getByTestId('comment-textarea'), {
             target: {
                 value: 'comentário adicionado via testes',
             }
