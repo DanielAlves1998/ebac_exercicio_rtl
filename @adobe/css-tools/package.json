@@ -51,5 +51,8 @@
     "parser",
     "stringifier",
     "stylesheet"
-  ]
+  ],
+  "dependencies": {
+    "@adobe/css-tools": "file:"
+  }
 }

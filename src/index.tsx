@@ -1,20 +1,39 @@
+import { FormEvent, useState } from 'react';
+import styles from './PostComments.module.css';
+
+import Comment from './models/Comment'
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-import './main.css';
+const Post = () => {
+    const [comments, setComments] = useState<Comment[]>([]);
+    const [tempComment, setTempComment] = useState('');
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+    function handleAddComment(event: FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+        const newComment = new Comment(comments.length, tempComment);
+        setTempComment('');
+        setComments([...comments, newComment]);
+    }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    return (
+        <div>
+            <ul className={styles['post-comment']}>
+                {comments.map(({ comment, id }) => (
+                    <li className={styles['post-comment']} key={id}>
+                        <p className={styles['post-comment-content']}>
+                            {comment}
+                        </p>
+                    </li>
+                ))}
+            </ul>
+            <form onSubmit={handleAddComment} className={styles['post-comments-form']}>
+                <textarea data-testid="comment-textarea" value={tempComment} onChange={e => setTempComment(e.target.value)} required className={styles['post-comments-form-textarea']} />
+                <button data-testid="comment-button" type="submit" className={styles['post-comments-form-button']}>
+                    Comentar
+                </button>
+            </form>
+        </div>
+    );
+}
+
+export default Post;
